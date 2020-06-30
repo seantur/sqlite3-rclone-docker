@@ -1,5 +1,9 @@
 Backup sqlite3 databases
 
+## dockerhub:
+
+    seantur/sqlite3-rclone-backup
+
 # Generate rclone config
 
     docker run -it -v $PWD/.conf/rclone:/root/.config/rclone sqlite-rclone rclone config

@@ -15,9 +15,6 @@ PATTERN = {
 
 DEFAULT_N = {"day": 7, "week": 4, "month": 12, "year": 5}
 BACKUP_DATETIME_PATTERN = "%Y_%m_%d_%H_%M_%S"
-PRUNE = True
-VERBOSE = True
-
 
 def main():
     backup_dir = "/backups"
@@ -57,15 +54,12 @@ def prune_backups(data_dir):
             n=_get_delta_from_env(delta, DEFAULT_N[delta]),
         )
 
-    if VERBOSE:
-        print(sorted(keep_set))
-    if PRUNE:
-        _prune(data_dir, keep_set)
+    _prune(data_dir, keep_set)
 
 
 def rclone_sync(data_dir, rclone_remote, rclone_path):
     subprocess.run(
-        ["rclone", "sync", data_dir, f"{rclone_remote}:{rclone_path}", "--dry-run"]
+        ["rclone", "sync", data_dir, f"{rclone_remote}:{rclone_path}"]
     )
 
 
